@@ -1,0 +1,55 @@
+/*/ CONCEPTS USED
+ I implement instantiation where i created an object from an existing class in order to get my random to guess. 
+I also imported a Scanner class and instantiated that as well in order to enter guesses. 
+Using a while loop allowed my program to continually run until the player does not wish to play anymore or until they hit the max times playable in this case 10. 
+I then use a "if else" statement in order to tally up the wins and loss the player gets from guessing.
+ /*/
+
+import java.util.Scanner;
+
+public class test {
+
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+		int answer;
+		int random;
+		int cont = 1;
+		int WIN = 0;
+		int Lose = 0;
+		int x = 0;
+
+		System.out.println("lets play the guess a number game");
+		System.out.println("you can only play up to ten times");
+		{
+
+			Dice die = new Dice();
+
+			while (cont != 0 && x < 10) {
+				x++;
+				System.out.printf("This is game %d\n", x);
+				random = die.GetValue();
+
+				System.out
+						.println("the comp has choosen a random number between 1 and 6\n"
+								+ "please guess which number it picked");
+				answer = input.nextInt();
+
+				if (answer == random) {
+					WIN++;
+					System.out.println("congrats you win");
+					System.out.printf("the comp choose %d\n", random);
+					System.out.printf("your guess was %d\n", answer);
+				} else if (answer != random) {
+					Lose++;
+					System.out.println("too bad you lose");
+					System.out.printf("the comp choose %d\n", random);
+					System.out.printf("your guess was %d\n", answer);
+				}
+				System.out
+						.println("do you wish to play again? 1 for yes 0 for no");
+				cont = input.nextInt();
+			}
+		}
+	}
+}
