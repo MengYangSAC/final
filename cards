@@ -1,0 +1,46 @@
+
+public class Cards {
+
+	int x;
+	int total;
+	
+	public Cards(){
+		
+	}
+	
+	public Cards(int cards)
+	{
+		x = cards;
+	}
+	
+	
+	public int GetValue()
+	{
+		x = 2 + (int)(Math.random()*10);
+		return x;
+	}
+	
+	public int GetValue(int cards){
+		x = cards;
+		total = 0;
+		for(int i =0;i<2;i++){
+		x = 2 + (int)(Math.random()*(12-2));
+		System.out.println(x);
+		total = total + x;
+		}
+		System.out.printf("your total is %d\n", total);
+		return total;
+}
+	
+	public int DealerCards(int cards){
+		x = cards;
+		total = 0;
+		for (int i = 0; i<2;i++){
+			x = 2 + (int)(Math.random()*(12-2));
+			System.out.println(x);
+			total = total + x;
+		}
+		return total;
+	}
+	
+}
