@@ -1,0 +1,113 @@
+/*/ CONCEPTS USED
+ I implement instantiation where i created an object from an existing class in order to get my random to guess. 
+ I had to create multiple objects where some needed variables so i had to add methods which worked along with my program.
+I also imported a Scanner class and instantiated that as well in order to enter guesses and tell the program to get another card.
+Using a while loop allowed my program to continually run until the player does not wish to play anymore or until they hit the max times playable in this case 10 or 3. 
+I then use a "if else" statement in order to show the user if they had won or lost or tied and put in multiple condition so that the player had to follow the rules.
+ /*/
+
+import java.util.Scanner;
+
+public class test {
+
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+		int answer;
+		int random;
+		int cont = 1;
+		int x = 0;
+
+		String game;
+
+		System.out.println("do you want to play guess or deal?");
+		game = input.next();
+
+		if (game.equals("guess")) {
+
+			System.out.println("you can only play up to ten times");
+
+			Dice die = new Dice();
+
+			while (cont != 0 && x < 10) {
+				x++;
+				System.out.printf("This is game %d\n", x);
+				random = die.GetValue();
+
+				System.out.println("the comp has choosen a random number between 1 and 6\n"
+								+ "please guess which number it picked");
+				answer = input.nextInt();
+
+				if (answer == random) {
+					System.out.println("congrats you win");
+					System.out.printf("the comp choose %d\n", random);
+					System.out.printf("your guess was %d\n", answer);
+				} else if (answer != random) {
+					System.out.println("too bad you lose");
+					System.out.printf("the comp choose %d\n", random);
+					System.out.printf("your guess was %d\n", answer);
+				}
+				System.out.println("do you wish to play again? 1 for yes 0 for no");
+				cont = input.nextInt();
+				System.out.printf("%s \n", die.GetHistory());
+			}
+		} else if (game.equals("deal")) {
+
+			int your;
+			int dealer;
+			int cards = 2;
+			int i = 0;
+			String add;
+
+			Cards deal = new Cards(2);
+
+			System.out.println("we will be playing black jack");
+			while (i < 3) {
+				i++;
+				System.out.printf("we will play 3 times. this is game %d\n", i);
+				System.out.println("here are you cards");
+				your = deal.GetValue(2);
+				System.out.println(your);
+				System.out.println("do you wish to hit? yes or no");
+				add = input.next();
+
+				do {
+					if (add.equals("yes")) {
+						Cards hit = new Cards();
+						x = hit.GetValue();
+						System.out.printf("you have added %s\n", x);
+						your = your + x;
+						System.out.printf("your total is now %d\n", your);
+						if (your > 21) {
+							System.out.println("you busted.");
+						} else if (your < 21) {
+							System.out.println("do you want to hit again? 1 for yes 0 for no\n");
+							add = input.next();
+						}
+					}
+				} while (add.equals("yes") && your < 21);
+
+				System.out.println("lets compare with the dealer");
+				dealer = deal.DealerCards(2);
+				if (your > dealer && your <= 21) {
+					System.out.println("you win");
+					System.out.printf("the dealer had %d\n", dealer);
+					System.out.printf("you had %d\n", your);
+				} else if (your < dealer) {
+					System.out.println("you lose");
+					System.out.printf("the dealer had %d\n", dealer);
+					System.out.printf("you had %d\n", your);
+				} else if (your > 21) {
+					System.out.println("you lose");
+					System.out.printf("the dealer had %d\n", dealer);
+					System.out.printf("you had %d\n", your);
+				} else if (your == dealer) {
+					System.out.println("you tied with the dealer");
+					System.out.printf("the dealer had %d\n", dealer);
+					System.out.printf("you had %d\n", your);
+				}
+
+			}
+		}
+	}
+}
