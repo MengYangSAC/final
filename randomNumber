@@ -7,7 +7,7 @@ public class RandomNumber
 	
 	public int GetValue()
 	{
-		int die = 1 +(int)(Math.random()*6);
+		int die = 1 +(int)(Math.random());
 		System.out.println(die);
 		return die;
 	}
