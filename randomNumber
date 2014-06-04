@@ -1,0 +1,15 @@
+public class RandomNumber 
+{
+	int x;
+	public RandomNumber(){	
+		
+	}
+	
+	public int GetValue()
+	{
+		int die = 1 +(int)(Math.random()*6);
+		System.out.println(die);
+		return die;
+	}
+	
+}
