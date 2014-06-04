@@ -1,0 +1,14 @@
+public class Double_Dice extends Dice {
+
+	int x;
+
+	public Double_Dice() {
+
+	}
+
+	@Override
+	public int GetValue() {
+		x = 1 + (int) (Math.random() * 12);
+		return x;
+	}
+}
