@@ -1,0 +1,18 @@
+
+public class Dice extends RandomNumber {
+	
+	int x;
+	
+	public Dice (){
+		
+	}
+	
+	@Override
+	public int GetValue()
+	{
+		x = 1+ (int)(Math.random()*6);
+		return x;
+	}
+	
+	
+}
